@@ -159,7 +159,12 @@
 
   /* ---------- PHONES & NARROW WINDOWS ---------- */
   @media (max-width: 760px), (max-aspect-ratio: 1/1) {
-    .hero { place-items: stretch; align-content: center; }
+    .hero {
+      min-height: 0;
+      place-items: stretch;
+      padding-top: max(40px, env(safe-area-inset-top));
+      padding-bottom: 8px;
+    }
     .stage {
       width: 100%;
       aspect-ratio: auto;
@@ -183,18 +188,24 @@
       height: auto;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 18px;
     }
+    /* A tidy stair-step down and to the right, like the poster's diagonal. */
     .info li {
       position: static;
-      transform: rotate(var(--r));
+      align-self: flex-start;
+      transform: rotate(calc(var(--r) * .45));
+      transform-origin: left center;
       font-size: clamp(18px, 5vw, 26px);
-      align-self: var(--align);
     }
+    .info li:nth-child(2) { margin-left: 12%; }
+    .info li:nth-child(3) { margin-left: 24%; }
+    .info li:nth-child(4) { margin-left: 36%; }
 
     .program {
       grid-template-columns: minmax(0, 1fr);
       row-gap: 56px;
+      padding-top: 72px;
     }
     .intro, .students { grid-column: auto; }
     .ribbon .wide { display: none; }
